@@ -28,7 +28,7 @@ const swaggerDocument = JSON.parse(
 );
 
   // Mount Swagger UI at /api
-  app.use("/api/v1", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.listen(process.env.PORT, () => {
