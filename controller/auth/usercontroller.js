@@ -1,4 +1,4 @@
-import User from "../../model/auth/userModel";
+import User from "../../model/auth/userModel.js";
 
 export const registerUser = async (req, res) => {
   const { email, password, role } = req.body;
@@ -10,6 +10,6 @@ export const registerUser = async (req, res) => {
     const user = await User.create({ email, password, role });
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };

@@ -1,4 +1,5 @@
 import express from 'express';
+import { registerUser } from '../../controller/auth/usercontroller.js';
 
 
 const userRouter = express.Router();
@@ -10,7 +11,7 @@ const userRouter = express.Router();
 
 
 // POST Methods
-
+userRouter.post('/regiter', registerUser);
 
 
 
