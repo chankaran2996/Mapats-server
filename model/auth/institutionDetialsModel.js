@@ -21,6 +21,6 @@ const institutionDetailsSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-const InstitutionDetails = mongoose.model("InstitutionDetails", institutionDetailsSchema);
+const InstitutionDetails = mongoose.model("institutionDetails", institutionDetailsSchema);
 
 export default InstitutionDetails;

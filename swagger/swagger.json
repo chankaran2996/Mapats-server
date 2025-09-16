@@ -108,6 +108,57 @@
           "Auth"
         ]
       }
+    },
+    "/api/v1/chief/add-institution": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "institutionName": {
+                  "example": "any"
+                },
+                "partnersName": {
+                  "example": "any"
+                },
+                "contactPersonName": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "website": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "role": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Chief"
+        ]
+      }
     }
   },
   "tags": [
@@ -118,6 +169,10 @@
     {
       "name": "Auth",
       "description": "Auth endpoints"
+    },
+    {
+      "name": "Chief",
+      "description": "Chief endpoints"
     }
   ]
 }

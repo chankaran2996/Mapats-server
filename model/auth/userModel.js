@@ -12,7 +12,13 @@ const userSchema = new mongoose.Schema({
   role:{
     type: String,
   },
-  details: { type: mongoose.Schema.Types.ObjectId, ref: 'Details' }
+  resetToken: {
+    type: String,
+  },
+  resetTokenExpiry: {
+    type: Date,
+  },
+  details: { type: mongoose.Schema.Types.ObjectId, ref: 'institutionDetails' }
 }, { timestamps: true });
 
 userSchema.pre('save', async function(next) {
@@ -26,6 +32,6 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("users", userSchema);
 
 export default User;

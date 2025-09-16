@@ -8,6 +8,7 @@ import path from "path";
 import fs from "fs";
 import swaggerUi from "swagger-ui-express";
 import userRouter from "./router/auth/userRouters.js";
+import chiefRouters from "./router/chief/chiefRouters.js";
 
 dotenv.config();
 const app = express();
@@ -32,6 +33,8 @@ const swaggerDocument = JSON.parse(
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/api/v1/auth", userRouter);
+
+app.use('/api/v1/chief', chiefRouters);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
