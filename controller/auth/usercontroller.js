@@ -1,3 +1,4 @@
+import InstitutionDetails from "../../model/auth/institutionDetialsModel.js";
 import User from "../../model/auth/userModel.js";
 import generateToken from "../../utils/generateToken.js";
 
@@ -53,6 +54,27 @@ export const setPassword = async (req, res) => {
         user.resetTokenExpiry = undefined;
         await user.save();
         res.status(200).json({ message: "Password set successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
+
+export const getUserProfile = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        let details = null;
+        if (user.role == "head") {
+            details = await InstitutionDetails.findById(user.details);
+        }
+        res.status(200).json({ 
+            email: user.email, 
+            role: user.role, 
+            details: details 
+        });
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
