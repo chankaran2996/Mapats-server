@@ -1,17 +1,18 @@
 import express from 'express';
 import { 
+    getUserProfile,
     loginUser, 
     registerUser, 
     setPassword 
 } from '../../controller/auth/usercontroller.js';
+import { protect } from '../../middleware/authMiddleware.js';
 
 
 const userRouter = express.Router();
 
 
 // GET Methods
-
-
+userRouter.get('/profile', protect, getUserProfile);
 
 
 // POST Methods

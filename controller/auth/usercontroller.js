@@ -60,7 +60,7 @@ export const setPassword = async (req, res) => {
 };
 
 export const getUserProfile = async (req, res) => {
-    const { userId } = req.params;
+    const userId = req.user._id;
     try {
         const user = await User.findById(userId);
         if (!user) {
@@ -70,11 +70,12 @@ export const getUserProfile = async (req, res) => {
         if (user.role == "head") {
             details = await InstitutionDetails.findById(user.details);
         }
-        res.status(200).json({ 
+        const data = { 
             email: user.email, 
             role: user.role, 
             details: details 
-        });
+        }
+        res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
